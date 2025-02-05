@@ -1,0 +1,245 @@
+:root {
+  --primary: #7c3aed;
+  --secondary: #ff6b6b;
+  --gradient-start: #6366f1;
+  --gradient-end: #a855f7;
+  --background: #f8fafc;
+}
+
+body {
+  background: var(--background);
+}
+
+.todo-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+h1 {
+  color: #2d3748;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+h1::after {
+  content: "🚀";
+  position: absolute;
+  margin-left: 10px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+input {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--background);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+button[type="submit"] {
+  padding: 15px 25px;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+.category-select {
+  padding: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: var(--background);
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background: white;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border-left: 4px solid var(--primary);
+}
+
+li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+li[data-category="work"] {
+  border-left-color: #3b82f6;
+}
+
+li[data-category="shopping"] {
+  border-left-color: #10b981;
+}
+
+input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+span {
+  flex: 1;
+  font-size: 1.1rem;
+  color: #2d3748;
+  transition: opacity 0.3s ease;
+}
+
+span.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.delete-btn {
+  padding: 8px 12px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+  transform: scale(1.05);
+}
+
+.progress-circle {
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.progress-circle svg {
+  transform: rotate(-90deg);
+}
+
+.progress-circle circle {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.progress-circle .background {
+  stroke: #e2e8f0;
+}
+
+.progress-circle .progress {
+  stroke: var(--primary);
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.badges-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: #e2e8f0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.badge.active {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+li {
+  animation: slideIn 0.3s ease forwards;
+}
+
+@media (max-width: 640px) {
+  .todo-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  form {
+    flex-direction: column;
+  }
+  
+  input, .category-select {
+    width: 100%;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+  }
+}
