@@ -3,6 +3,7 @@ import axios from "axios";
 import Confetti from 'react-confetti';
 import { Howl } from 'howler';
 
+const Url = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
@@ -31,7 +32,7 @@ const TodoList = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/todos");
+      const response = await axios.get(`${Url}/api/todos`);
       setTodos(response.data);
     } catch (err) {
       console.error(err);
@@ -50,7 +51,7 @@ const TodoList = () => {
     if (!text.trim()) return;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/todos", {
+      const response = await axios.post(`${Url}/api/todos`, {
         text,
         category
       });
@@ -64,7 +65,7 @@ const TodoList = () => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${id}`);
+      await axios.delete(`${Url}/api/todos/${id}`);
       setTodos(todos.filter((todo) => todo._id !== id));
       playSound('/sounds/delete.mp3');
     } catch (err) {
@@ -74,7 +75,7 @@ const TodoList = () => {
 
   const toggleTodo = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/api/todos/${id}`);
+      await axios.patch(`${Url}/api/todos/${id}`);
       const updatedTodos = todos.map(todo => 
         todo._id === id ? { ...todo, completed: !todo.completed } : todo
       );
