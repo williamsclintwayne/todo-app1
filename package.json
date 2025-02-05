@@ -10,8 +10,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A modern full-stack todo list with React, Node.js, and MongoDB.",
   "dependencies": {
     "concurrently": "^9.1.2"
-  }
+  },
+  "devDependencies": {}
 }
